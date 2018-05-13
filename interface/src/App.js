@@ -4,7 +4,7 @@ import {
   Route,
   Switch, Link
 } from 'react-router-dom';
-import SalesForm from './components/SalesForm';
+import SalesForm from './components/SalesForm/index';
 
 const App = () => (
   <Router>
