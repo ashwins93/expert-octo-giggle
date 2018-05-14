@@ -2,11 +2,11 @@ import React from 'react';
 import { FormGroup, Label, Col, CustomInput } from 'reactstrap';
 
 const ContactDetails = () => (
-  <div className="p-3 my-2">
+  <div className="my-2">
     <h4>Contact details</h4>
     <FormGroup row>
-      <Label sm={4}>Sales Head</Label>
-      <Col sm={8}>
+      <Label sm={6}>Sales Head</Label>
+      <Col sm={6}>
         <CustomInput type="select">
           <option value="1">John</option>
           <option value="2">Doe</option>
@@ -15,8 +15,8 @@ const ContactDetails = () => (
       </Col>
     </FormGroup>
     <FormGroup row>
-      <Label sm={4}>Distributor</Label>
-      <Col sm={8}>
+      <Label sm={6}>Distributor</Label>
+      <Col sm={6}>
         <CustomInput type="select">
           <option value="1">Avon</option>
           <option value="2">Spock</option>
@@ -25,8 +25,8 @@ const ContactDetails = () => (
       </Col>
     </FormGroup>
     <FormGroup row>
-      <Label sm={4}>End User</Label>
-      <Col sm={8}>
+      <Label sm={6}>End User</Label>
+      <Col sm={6}>
         <CustomInput type="select">
           <option value="1">Drecker</option>
           <option value="2">Beckett</option>
