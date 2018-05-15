@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import OrderDetails from './OrderDetails';
 import ContactDetails from './ContactDetails';
 import ItemList from './ItemList';
+import DeliveryDetails from './DeliveryDetails';
 import {
   Container,
   Row,
@@ -33,7 +34,7 @@ class SalesForm extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className="py-5">
         <h1>Enter new sale order</h1>
         <Form>
           <Row>
@@ -56,6 +57,8 @@ class SalesForm extends Component {
             </Col>
           </FormGroup>
           <ItemList items={this.state.items} />
+          <hr />
+          <DeliveryDetails />
         </Form>
       </Container>
     );
