@@ -17,6 +17,9 @@ class SalesForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      orderReceivedOn: '',
+      orderReceivedThrough: '',
+      originalOrder: '',
       items: [
         {
           name: 'EXD RR',
@@ -32,17 +35,37 @@ class SalesForm extends Component {
     };
   }
 
+  addItem = item =>
+    this.setState({
+      items: [...this.state.items, item]
+    });
+
+  removeItem = index =>
+    this.setState({
+      items: this.state.items.filter((item, idx) => index !== idx)
+    });
+
+  handleChange = name => predicate => ({ target }) => {
+    if (predicate(target.value)) {
+      this.setState({
+        name: target.value
+      });
+    }
+  };
+
   render() {
+    const { orderReceivedOn, orderReceivedThrough, originalOrder } = this.state;
+
     return (
       <Container className="py-5">
         <h1>Enter new sale order</h1>
         <Form>
           <Row>
             <Col>
-              <OrderDetails />
+              <OrderDetails handleChange={this.handleChange} {...order} />
             </Col>
             <Col>
-              <ContactDetails />
+              <ContactDetails handleChange={this.handleChange} />
             </Col>
           </Row>
           <hr />
@@ -56,7 +79,11 @@ class SalesForm extends Component {
               </CustomInput>
             </Col>
           </FormGroup>
-          <ItemList items={this.state.items} />
+          <ItemList
+            items={this.state.items}
+            addItem={this.addItem}
+            removeItem={this.removeItem}
+          />
           <hr />
           <DeliveryDetails />
         </Form>
