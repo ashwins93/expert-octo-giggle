@@ -44,3 +44,7 @@ export const addOrder = formData => {
 
   return Promise.resolve(newOrder);
 };
+
+export const fetchAllProjections = () => {
+  return Promise.resolve(db.projections);
+};

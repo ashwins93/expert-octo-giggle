@@ -4,6 +4,7 @@ import SalesForm from './components/SalesForm/index';
 import NavBar from './components/NavBar';
 import OrdersView from './components/OrdersView';
 import ProjectionForm from './components/ProjectionForm';
+import ProjectionsView from './components/ProjectionsView';
 
 const App = () => (
   <Router>
@@ -18,6 +19,7 @@ const App = () => (
         <Route exact path="/sales/new" component={SalesForm} />
         <Route exact path="/orders" component={OrdersView} />
         <Route exact path="/projections/new" component={ProjectionForm} />
+        <Route exact path="/projections" component={ProjectionsView} />
       </Switch>
     </div>
   </Router>

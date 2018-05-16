@@ -11,23 +11,22 @@ const NavBarTop = () => (
     <Nav className="ml-auto" navbar>
       <NavItem>
         <Link className="nav-link" to="/sales/new">
-          <Button color="primary" size="sm">
-            New Order
-          </Button>
+          New Order
         </Link>
       </NavItem>
       <NavItem>
         <Link className="nav-link" to="/orders">
-          <Button color="primary" size="sm">
-            View Orders
-          </Button>
+          Orders
         </Link>
       </NavItem>
       <NavItem>
         <Link className="nav-link" to="/projections/new">
-          <Button color="primary" size="sm">
-            New Projection
-          </Button>
+          New Projection
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/projections">
+          Projections
         </Link>
       </NavItem>
     </Nav>

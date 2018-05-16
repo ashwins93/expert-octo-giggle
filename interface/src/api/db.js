@@ -72,6 +72,24 @@ const db = {
         originalOrder: '2018-05-06'
       }
     }
+  ],
+  projections: [
+    {
+      id: 0,
+      projectionStart: '2018-05-01',
+      projectionEnd: '2018-05-31',
+      salesHead: 'SH001',
+      category: 'Cat1',
+      amount: '100'
+    },
+    {
+      id: 1,
+      projectionStart: '2018-04-01',
+      projectionEnd: '2018-04-30',
+      salesHead: 'SH002',
+      category: 'Cat2',
+      amount: '400'
+    }
   ]
 };
 
