@@ -33,6 +33,8 @@ const items = (state = initialState, action) => {
       return state.map(
         item => (item.id === action.id ? { ...item, name: action.name } : item)
       );
+    case actions.CLEAR_FORM:
+      return initialState;
     default:
       return state;
   }

@@ -26,3 +26,15 @@ export const itemNameChange = (id, name) => ({
   id,
   name
 });
+
+export const orderDetailChange = (name, value) => ({
+  type: actions.SALES_ORDER_DETAIL_CHANGE,
+  name,
+  value
+});
+
+export const contactDetailChange = (name, value) => ({
+  type: actions.SALES_CONTACT_DETAIL_CHANGE,
+  name,
+  value
+});

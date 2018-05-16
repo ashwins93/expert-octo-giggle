@@ -17,9 +17,6 @@ class SalesForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      orderReceivedOn: '',
-      orderReceivedThrough: '',
-      originalOrder: '',
       items: [
         {
           name: 'EXD RR',
@@ -54,15 +51,13 @@ class SalesForm extends Component {
   };
 
   render() {
-    const { orderReceivedOn, orderReceivedThrough, originalOrder } = this.state;
-
     return (
       <Container className="py-5">
         <h1>Enter new sale order</h1>
         <Form>
           <Row>
             <Col>
-              <OrderDetails handleChange={this.handleChange} {...order} />
+              <OrderDetails handleChange={this.handleChange} />
             </Col>
             <Col>
               <ContactDetails handleChange={this.handleChange} />
