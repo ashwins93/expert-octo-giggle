@@ -22,3 +22,17 @@ export const fetchSalesHead = distributor => {
 export const fetchAllOrders = () => {
   return Promise.resolve(db.orders);
 };
+
+export const fetchOrder = id => {
+  return Promise.resolve(db.orders.find(order => order.id === id));
+};
+
+export const addOrder = formData => {
+  const newOrder = {
+    id: db.orders.length,
+    ...formData
+  };
+  db.orders.push(newOrder);
+
+  return Promise.resolve(newOrder);
+};
