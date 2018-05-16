@@ -10,24 +10,28 @@ import {
   Form,
   CustomInput,
   FormGroup,
-  Label
+  Label,
+  Button
 } from 'reactstrap';
 import { connect } from 'react-redux';
 import { getCategory, getOptions } from '../../reducers';
-import { categoryChange, fetchOptions } from '../../actions';
+import { categoryChange, fetchOptions, clearForm } from '../../actions';
+import Link from 'react-router-dom/Link';
 
 class SalesForm extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchOptions('distributors');
     this.props.fetchOptions('categories');
   }
 
   render() {
-    const { category, categoryChange, catOptions, fetchOptions } = this.props;
+    const {
+      category,
+      categoryChange,
+      catOptions,
+      fetchOptions,
+      clearForm
+    } = this.props;
     return (
       <Container className="py-5">
         <h1>Enter new sale order</h1>
@@ -54,9 +58,11 @@ class SalesForm extends Component {
                 }}
               >
                 <option>Select</option>
-                {catOptions.map((option, index) =>
-                  <option key={index} value={option}>{option}</option>
-                )}
+                {catOptions.map((option, index) => (
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
+                ))}
               </CustomInput>
             </Col>
           </FormGroup>
@@ -64,6 +70,19 @@ class SalesForm extends Component {
           <hr />
           <DeliveryDetails />
         </Form>
+        <FormGroup className="d-flex justify-content-around">
+          <Button color="primary" size="lg">
+            Submit
+          </Button>
+          <Link to="/">
+            <Button type="button" size="lg">
+              Cancel
+            </Button>
+          </Link>
+          <Button type="button" onClick={clearForm} size="lg">
+            Reset
+          </Button>
+        </FormGroup>
       </Container>
     );
   }
@@ -73,10 +92,8 @@ const mapStateToProps = state => ({
   catOptions: getOptions(state, 'categories')
 });
 
-export default connect(
-  mapStateToProps,
-  {
-    categoryChange,
-    fetchOptions
-  }
-)(SalesForm);
+export default connect(mapStateToProps, {
+  categoryChange,
+  fetchOptions,
+  clearForm
+})(SalesForm);

@@ -46,12 +46,12 @@ export const deliveryDetailChange = (name, value) => ({
   value
 });
 
-export const categoryChange = (category) => ({
+export const categoryChange = category => ({
   type: actions.SALES_CATEGORY_CHANGE,
   category
 });
 
-export const fetchOptions = (type, group) => (dispatch) => {
+export const fetchOptions = (type, group) => dispatch => {
   api.fetchOptions(type, group).then(options => {
     dispatch({
       type: actions.SALES_FETCH_OPTIONS,
@@ -62,7 +62,7 @@ export const fetchOptions = (type, group) => (dispatch) => {
   return Promise.resolve();
 };
 
-export const fetchSalesHead = (distributor) => (dispatch) => {
+export const fetchSalesHead = distributor => dispatch => {
   api.fetchSalesHead(distributor).then(salesHead => {
     dispatch({
       type: actions.SALES_FETCH_HEAD,
@@ -71,3 +71,7 @@ export const fetchSalesHead = (distributor) => (dispatch) => {
   });
   return Promise.resolve();
 };
+
+export const clearForm = () => ({
+  type: actions.CLEAR_FORM
+});
