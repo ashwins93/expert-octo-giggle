@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import order from './order';
-import items from './items';
-import contact from './contact';
-import delivery from './delivery';
+import order, * as orderReducer from './order';
+import items, * as itemsReducer from './items';
+import contact, * as contactReducer from './contact';
+import delivery, * as deliveryReducer from './delivery';
 import * as actions from '../actions/actionTypes';
-import * as itemsReducer from './items';
+
 
 const category = (state = '', action) => {
   switch (action.type) {
@@ -27,3 +27,6 @@ export const getAllItems = (state) => state.items;
 export const getItemName = (state, id) => itemsReducer.getItemName(state.items, id);
 export const getItemRate = (state, id) => itemsReducer.getItemRate(state.items, id);
 export const getItemQty = (state, id) => itemsReducer.getItemQty(state.items, id);
+export const getOrderDetail = (state, name) => orderReducer.getOrderDetail(state.order, name);
+export const getDeliveryDetail = (state, name) => deliveryReducer.getDeliveryDetail(state.delivery, name);
+export const getContactDetail = (state, name) => contactReducer.getContactDetail(state.contact, name);

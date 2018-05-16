@@ -38,3 +38,9 @@ export const contactDetailChange = (name, value) => ({
   name,
   value
 });
+
+export const deliveryDetailChange = (name, value) => ({
+  type: actions.SALES_DELIVERY_DETAIL_CHANGE,
+  name,
+  value
+});

@@ -7,10 +7,16 @@ const initialState = {
 }
 
 const order = (state = initialState, action) => {
-  if (action.type === actions.SALES_ORDER_DETAIL_CHANGE) {
-    return { ...state, [action.name]: action.value };
+  switch (action.type) {
+    case actions.SALES_ORDER_DETAIL_CHANGE:
+      return { ...state, [action.name]: action.value }
+    case actions.CLEAR_FORM:
+      return initialState;
+    default:
+      return state;
   }
-  return state;
 };
 
 export default order;
+
+export const getOrderDetail = (state, name) => state[name];
