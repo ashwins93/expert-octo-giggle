@@ -71,6 +71,35 @@ const db = {
         orderReceivedThrough: 'Message',
         originalOrder: '2018-05-06'
       }
+    },
+    {
+      id: 3,
+      category: 'Cat1',
+      contact: { salesHead: 'SH001', distributor: 'Dist1', endUser: 'User1' },
+      delivery: {
+        courier: 'ST',
+        deliveryDate: '2018-05-19',
+        dispatchDate: '2018-05-17',
+        invoiceNo: '123',
+        invoiced: false,
+        pendingPayments: '0',
+        podNo: '125',
+        remarks: 'Blah blah',
+        supply: '1st month'
+      },
+      items: [
+        {
+          id: 0,
+          name: 'Item1',
+          quantity: 3,
+          rate: '100'
+        }
+      ],
+      order: {
+        orderReceivedOn: '2018-05-04',
+        orderReceivedThrough: 'Message',
+        originalOrder: '2018-05-06'
+      }
     }
   ],
   projections: [
@@ -80,7 +109,7 @@ const db = {
       projectionEnd: '2018-05-31',
       salesHead: 'SH001',
       category: 'Cat1',
-      amount: '100'
+      amount: '800'
     },
     {
       id: 1,

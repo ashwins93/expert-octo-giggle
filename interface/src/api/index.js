@@ -48,3 +48,9 @@ export const addOrder = formData => {
 export const fetchAllProjections = () => {
   return Promise.resolve(db.projections);
 };
+
+export const fetchProjection = id => {
+  return Promise.resolve(
+    db.projections.find(projection => projection.id == id)
+  );
+};

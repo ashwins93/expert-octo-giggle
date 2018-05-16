@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Table, Container } from 'reactstrap';
+import Link from 'react-router-dom/Link';
 
 class ProjectionsView extends Component {
   constructor(props) {
@@ -42,6 +43,9 @@ class ProjectionsView extends Component {
                 <td>{projection.salesHead}</td>
                 <td>{projection.category}</td>
                 <td>{projection.amount}</td>
+                <td>
+                  <Link to={`/analysis/${projection.id}`}>Analyze</Link>
+                </td>
               </tr>
             ))}
           </tbody>

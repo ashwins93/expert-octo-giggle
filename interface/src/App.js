@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import OrdersView from './components/OrdersView';
 import ProjectionForm from './components/ProjectionForm';
 import ProjectionsView from './components/ProjectionsView';
+import AnalysisView from './components/AnalysisView';
 
 const App = () => (
   <Router>
@@ -20,6 +21,7 @@ const App = () => (
         <Route exact path="/orders" component={OrdersView} />
         <Route exact path="/projections/new" component={ProjectionForm} />
         <Route exact path="/projections" component={ProjectionsView} />
+        <Route exact path="/analysis/:id" component={AnalysisView} />
       </Switch>
     </div>
   </Router>
