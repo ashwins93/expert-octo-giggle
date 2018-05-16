@@ -32,6 +32,7 @@ const OrderDetails = ({
             onChange={(e) => orderDetailChange('orderReceivedThrough', e.target.value)}
             value={orderReceivedThrough}
           >
+            <option>Select</option>
             <option value="phone_call">Phone call</option>
             <option value="message">Message</option>
             <option value="email">Email</option>

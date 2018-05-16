@@ -63,6 +63,7 @@ const DeliveryDetails = ({
             value={dispatchDate}
             onChange={e => deliveryDetailChange('dispatchDate', e.target.value)}
             type="date"
+            disabled={!invoiced}
           />
         </Col>
       </FormGroup>
@@ -73,6 +74,7 @@ const DeliveryDetails = ({
             id="courier"
             value={courier}
             onChange={e => deliveryDetailChange('courier', e.target.value)}
+            disabled={!invoiced}
           />
         </Col>
         <Label sm={3}>POD No.</Label>
@@ -81,6 +83,7 @@ const DeliveryDetails = ({
             id="pod-no"
             value={podNo}
             onChange={e => deliveryDetailChange('podNo', e.target.value)}
+            disabled={!invoiced}
           />
         </Col>
       </FormGroup>
@@ -92,6 +95,7 @@ const DeliveryDetails = ({
             value={deliveryDate}
             onChange={e => deliveryDetailChange('deliveryDate', e.target.value)}
             type="date"
+            disabled={!invoiced}
           />
         </Col>
         <Label sm={3}>Payments pending</Label>

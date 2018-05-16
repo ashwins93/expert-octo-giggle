@@ -1,30 +1,29 @@
 import React from 'react';
-import { FormGroup, Label, Col, CustomInput } from 'reactstrap';
+import { FormGroup, Label, Col, CustomInput, Input } from 'reactstrap';
 import { connect } from 'react-redux';
-import { getContactDetail } from '../../reducers';
-import { contactDetailChange } from '../../actions';
+import { getContactDetail, getOptions, getSalesHead } from '../../reducers';
+import { contactDetailChange, fetchOptions, fetchSalesHead } from '../../actions';
 
 const ContactDetails = ({
   salesHead,
   distributor,
   endUser,
-  contactDetailChange
+  contactDetailChange,
+  distOptions,
+  endOptions,
+  fetchOptions,
+  fetchSalesHead
 }) => (
     <div className="my-2">
       <h4>Contact details</h4>
       <FormGroup row>
         <Label sm={6}>Sales Head</Label>
         <Col sm={6}>
-          <CustomInput
+          <Input
             id="sales-head"
             value={salesHead}
-            onChange={(e) => contactDetailChange('salesHead', e.target.value)}
-            type="select"
-          >
-            <option value="1">John</option>
-            <option value="2">Doe</option>
-            <option value="3">Feynman</option>
-          </CustomInput>
+            readOnly
+          />
         </Col>
       </FormGroup>
       <FormGroup row>
@@ -33,12 +32,17 @@ const ContactDetails = ({
           <CustomInput
             id="distributor"
             value={distributor}
-            onChange={(e) => contactDetailChange('distributor', e.target.value)}
+            onChange={(e) => {
+              contactDetailChange('distributor', e.target.value);
+              fetchOptions('endUsers', e.target.value);
+              fetchSalesHead(e.target.value);
+            }}
             type="select"
           >
-            <option value="1">Avon</option>
-            <option value="2">Spock</option>
-            <option value="3">Drax</option>
+            <option>Select</option>
+            {distOptions.map((option, index) =>
+              <option key={index} value={option}>{option}</option>
+            )}
           </CustomInput>
         </Col>
       </FormGroup>
@@ -51,9 +55,10 @@ const ContactDetails = ({
             onChange={(e) => contactDetailChange('endUser', e.target.value)}
             type="select"
           >
-            <option value="1">Drecker</option>
-            <option value="2">Beckett</option>
-            <option value="3">Karl</option>
+            <option>Select</option>
+            {endOptions.map((option, index) =>
+              <option key={index} value={option}>{option}</option>
+            )}
           </CustomInput>
         </Col>
       </FormGroup>
@@ -63,7 +68,16 @@ const ContactDetails = ({
 const mapStateToProps = state => ({
   salesHead: getContactDetail(state, 'salesHead'),
   distributor: getContactDetail(state, 'distributor'),
-  endUser: getContactDetail(state, 'endUser')
+  endUser: getContactDetail(state, 'endUser'),
+  distOptions: getOptions(state, 'distributors'),
+  endOptions: getOptions(state, 'endUsers')
 });
 
-export default connect(mapStateToProps, { contactDetailChange })(ContactDetails);
+export default connect(
+  mapStateToProps,
+  {
+    contactDetailChange,
+    fetchOptions,
+    fetchSalesHead
+  }
+)(ContactDetails);

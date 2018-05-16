@@ -13,3 +13,5 @@ export const getOrderDetail = (state, name) => sales.getOrderDetail(state.salesF
 export const getDeliveryDetail = (state, name) => sales.getDeliveryDetail(state.salesForm, name);
 export const getContactDetail = (state, name) => sales.getContactDetail(state.salesForm, name);
 export const getCategory = (state) => sales.getCategory(state.salesForm);
+export const getOptions = (state, type) => sales.getOptions(state.salesForm, type);
+export const getSalesHead = (state) => sales.getSalesHead(state.salesForm);

@@ -1,4 +1,5 @@
 import * as actions from './actionTypes';
+import * as api from '../api';
 
 export const addItem = () => ({
   type: actions.SALES_ADD_ITEM
@@ -49,3 +50,24 @@ export const categoryChange = (category) => ({
   type: actions.SALES_CATEGORY_CHANGE,
   category
 });
+
+export const fetchOptions = (type, group) => (dispatch) => {
+  api.fetchOptions(type, group).then(options => {
+    dispatch({
+      type: actions.SALES_FETCH_OPTIONS,
+      options,
+      optionsFor: type
+    });
+  });
+  return Promise.resolve();
+};
+
+export const fetchSalesHead = (distributor) => (dispatch) => {
+  api.fetchSalesHead(distributor).then(salesHead => {
+    dispatch({
+      type: actions.SALES_FETCH_HEAD,
+      salesHead
+    });
+  });
+  return Promise.resolve();
+};
