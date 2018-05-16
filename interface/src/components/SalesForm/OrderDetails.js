@@ -1,12 +1,8 @@
 import React from 'react';
 import { FormGroup, Label, Input, Col, CustomInput } from 'reactstrap';
+import { connect } from 'react-redux';
 
-const OrderDetails = ({
-  handleChange,
-  orderReceivedOn,
-  orderReceivedThrough,
-  originalOrder
-}) => (
+const OrderDetails = () => (
   <div className="my-2">
     <h4>Order details</h4>
     <FormGroup row>
@@ -14,8 +10,8 @@ const OrderDetails = ({
       <Col sm={6}>
         <Input
           type="date"
-          onChange={handleChange('orderReceivedOn')(() => true)}
-          value={orderReceivedOn}
+        // onChange={handleChange('orderReceivedOn')(() => true)}
+        // value={orderReceivedOn}
         />
       </Col>
     </FormGroup>
@@ -24,8 +20,8 @@ const OrderDetails = ({
       <Col sm={6}>
         <CustomInput
           type="select"
-          onChange={handleChange('orderReceivedThrough')(() => true)}
-          value={orderReceivedThrough}
+        // onChange={handleChange('orderReceivedThrough')(() => true)}
+        // value={orderReceivedThrough}
         >
           <option value="phone_call">Phone call</option>
           <option value="message">Message</option>
@@ -38,8 +34,8 @@ const OrderDetails = ({
       <Col sm={6}>
         <Input
           type="date"
-          handleChange={handleChange('originalOrder')(() => true)}
-          value={originalOrder}
+        // handleChange={handleChange('originalOrder')(() => true)}
+        // value={originalOrder}
         />
       </Col>
     </FormGroup>

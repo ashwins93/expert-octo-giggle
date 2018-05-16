@@ -30,3 +30,4 @@ export const getItemQty = (state, id) => itemsReducer.getItemQty(state.items, id
 export const getOrderDetail = (state, name) => orderReducer.getOrderDetail(state.order, name);
 export const getDeliveryDetail = (state, name) => deliveryReducer.getDeliveryDetail(state.delivery, name);
 export const getContactDetail = (state, name) => contactReducer.getContactDetail(state.contact, name);
+export const getCategory = (state) => state.category;

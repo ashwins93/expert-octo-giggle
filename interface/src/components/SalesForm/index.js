@@ -12,79 +12,57 @@ import {
   FormGroup,
   Label
 } from 'reactstrap';
+import { connect } from 'react-redux';
+import { getCategory } from '../../reducers';
+import { categoryChange } from '../../actions';
 
-class SalesForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: [
-        {
-          name: 'EXD RR',
-          quantity: 3,
-          rate: 4
-        },
-        {
-          name: 'R-1',
-          quantity: 5,
-          rate: 6
-        }
-      ]
-    };
+const SalesForm = ({
+  category,
+  categoryChange
+}) => {
+  return (
+    <Container className="py-5">
+      <h1>Enter new sale order</h1>
+      <Form>
+        <Row>
+          <Col>
+            <OrderDetails />
+          </Col>
+          <Col>
+            <ContactDetails />
+          </Col>
+        </Row>
+        <hr />
+        <FormGroup row>
+          <Label sm={{ size: 3, offset: 6 }}>Category</Label>
+          <Col sm={3}>
+            <CustomInput
+              id="category-select"
+              type="select"
+              value={category}
+              onChange={({ target }) => categoryChange(target.value)}
+            >
+              <option>A</option>
+              <option>B</option>
+              <option>C</option>
+            </CustomInput>
+          </Col>
+        </FormGroup>
+        <ItemList />
+        <hr />
+        <DeliveryDetails />
+      </Form>
+    </Container>
+  );
+};
+
+const mapStateToProps = state => ({
+  category: getCategory(state)
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    categoryChange
   }
-
-  addItem = item =>
-    this.setState({
-      items: [...this.state.items, item]
-    });
-
-  removeItem = index =>
-    this.setState({
-      items: this.state.items.filter((item, idx) => index !== idx)
-    });
-
-  handleChange = name => predicate => ({ target }) => {
-    if (predicate(target.value)) {
-      this.setState({
-        name: target.value
-      });
-    }
-  };
-
-  render() {
-    return (
-      <Container className="py-5">
-        <h1>Enter new sale order</h1>
-        <Form>
-          <Row>
-            <Col>
-              <OrderDetails handleChange={this.handleChange} />
-            </Col>
-            <Col>
-              <ContactDetails handleChange={this.handleChange} />
-            </Col>
-          </Row>
-          <hr />
-          <FormGroup row>
-            <Label sm={{ size: 3, offset: 6 }}>Category</Label>
-            <Col sm={3}>
-              <CustomInput type="select">
-                <option>A</option>
-                <option>B</option>
-                <option>C</option>
-              </CustomInput>
-            </Col>
-          </FormGroup>
-          <ItemList
-            items={this.state.items}
-            addItem={this.addItem}
-            removeItem={this.removeItem}
-          />
-          <hr />
-          <DeliveryDetails />
-        </Form>
-      </Container>
-    );
-  }
-}
-
-export default SalesForm;
+)(SalesForm);

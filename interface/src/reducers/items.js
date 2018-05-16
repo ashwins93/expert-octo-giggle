@@ -2,6 +2,7 @@ import * as actions from '../actions/actionTypes';
 
 const initialState = [
   {
+    id: 0,
     name: '',
     quantity: 0,
     rate: 0
@@ -15,7 +16,9 @@ const items = (state = initialState, action) => {
         ...state,
         {
           id: state.reduce((maxId, item) => Math.max(maxId, item.id), -1) + 1,
-          ...initialState
+          name: '',
+          quantity: 0,
+          rate: 0
         }
       ];
     case actions.SALES_REMOVE_ITEM:

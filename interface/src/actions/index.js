@@ -44,3 +44,8 @@ export const deliveryDetailChange = (name, value) => ({
   name,
   value
 });
+
+export const categoryChange = (category) => ({
+  type: actions.SALES_CATEGORY_CHANGE,
+  category
+});

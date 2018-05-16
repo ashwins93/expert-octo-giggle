@@ -1,7 +1,10 @@
 import React, { Fragment } from 'react';
 import { FormGroup, CustomInput, Input, Col, Row, Button } from 'reactstrap';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
+import { getAllItems } from '../../reducers';
 
-const ItemList = ({ items, addItem, removeItem }) => (
+const ItemList = ({ items, addItem, removeItem, itemQtyChange, itemRateChange, itemNameChange }) => (
   <Fragment>
     <h3>Items</h3>
     <Row className="my-3">
@@ -10,36 +13,54 @@ const ItemList = ({ items, addItem, removeItem }) => (
       <Col sm={2}>Rate</Col>
       <Col sm={2}>Total</Col>
     </Row>
-    {items.map((item, index) => (
-      <FormGroup key={index} row>
+    {items.map(item => (
+      <FormGroup key={item.id} row>
         <Col sm={5}>
-          <CustomInput type="select" value={item.name}>
+          <CustomInput
+            id={`item-name-${item.id}`}
+            type="select"
+            value={item.name}
+            onChange={({ target }) => itemNameChange(item.id, target.value)}
+          >
             <option>{item.name}</option>
             <option>Random</option>
           </CustomInput>
         </Col>
         <Col sm={2}>
-          <Input className="text-right" type="number" value={item.quantity} />
+          <Input
+            id={`item-qty-${item.id}`}
+            className="text-right"
+            type="number"
+            onChange={({ target }) => itemQtyChange(item.id, parseInt(target.value))}
+            value={item.quantity}
+          />
         </Col>
         <Col sm={2}>
-          <Input className="text-right" type="text" value={item.rate} />
+          <Input
+            id={`item-rate-${item.id}`}
+            className="text-right"
+            type="text"
+            onChange={({ target }) => itemRateChange(item.id, target.value)}
+            value={item.rate}
+          />
         </Col>
         <Col sm={2}>
           <input
             type="text"
             className="text-right form-control-plaintext"
             readOnly
-            value={item.quantity * item.rate}
+            value={item.quantity * parseFloat(item.rate)}
           />
         </Col>
         <Col>
           <Button
             type="button"
-            onClick={() => removeItem(index)}
+            onClick={() => removeItem(item.id)}
             outline
+            color="danger"
             size="sm"
           >
-            x
+            {" x "}
           </Button>
         </Col>
       </FormGroup>
@@ -49,7 +70,7 @@ const ItemList = ({ items, addItem, removeItem }) => (
         <Button
           type="button"
           outline
-          onClick={() => addItem({ name: '', quantity: 0, rate: 0 })}
+          onClick={addItem}
         >
           Add New Line
         </Button>
@@ -62,4 +83,11 @@ const ItemList = ({ items, addItem, removeItem }) => (
   </Fragment>
 );
 
-export default ItemList;
+const mapStateToProps = (state) => ({
+  items: getAllItems(state)
+});
+
+export default connect(
+  mapStateToProps,
+  actions
+)(ItemList);
