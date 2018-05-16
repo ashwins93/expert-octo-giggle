@@ -19,6 +19,14 @@ export const fetchSalesHead = distributor => {
   return Promise.resolve(db.distributors[distributor].salesHead || '');
 };
 
+export const fetchAllSalesHead = () => {
+  return Promise.resolve(
+    Object.keys(db.distributors).map(
+      distributor => db.distributors[distributor].salesHead
+    )
+  );
+};
+
 export const fetchAllOrders = () => {
   return Promise.resolve(db.orders);
 };

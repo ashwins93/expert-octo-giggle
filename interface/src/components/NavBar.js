@@ -16,6 +16,20 @@ const NavBarTop = () => (
           </Button>
         </Link>
       </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/orders">
+          <Button color="primary" size="sm">
+            View Orders
+          </Button>
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link className="nav-link" to="/projections/new">
+          <Button color="primary" size="sm">
+            New Projection
+          </Button>
+        </Link>
+      </NavItem>
     </Nav>
   </Navbar>
 );
