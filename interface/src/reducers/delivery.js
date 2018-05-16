@@ -3,7 +3,6 @@ import * as actions from '../actions/actionTypes';
 const initialState = {
   supply: '',
   invoiced: false,
-  pending: true,
   invoiceNo: '',
   dispatchDate: '',
   courier: '',

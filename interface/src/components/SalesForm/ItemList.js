@@ -60,7 +60,7 @@ const ItemList = ({ items, addItem, removeItem, itemQtyChange, itemRateChange, i
             color="danger"
             size="sm"
           >
-            {" x "}
+            {" - "}
           </Button>
         </Col>
       </FormGroup>
