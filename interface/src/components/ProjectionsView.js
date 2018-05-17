@@ -32,6 +32,7 @@ class ProjectionsView extends Component {
               <th>Sales Head</th>
               <th>Category</th>
               <th>Amount</th>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -42,7 +43,7 @@ class ProjectionsView extends Component {
                 <td>{projection.projectionEnd}</td>
                 <td>{projection.salesHead}</td>
                 <td>{projection.category}</td>
-                <td>{projection.amount}</td>
+                <td className="text-right">{projection.amount}</td>
                 <td>
                   <Link to={`/analysis/${projection.id}`}>Analyze</Link>
                 </td>

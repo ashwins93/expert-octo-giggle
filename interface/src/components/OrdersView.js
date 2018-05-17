@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as api from '../api';
 import { Table, Container } from 'reactstrap';
+import Link from 'react-router-dom/Link';
 
 class OrdersView extends Component {
   constructor(props) {
@@ -30,7 +31,8 @@ class OrdersView extends Component {
               <th>Sales Head</th>
               <th>Distributor</th>
               <th>Category</th>
-              <th>Order Total</th>
+              <th className="text-right">Order Total</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -41,11 +43,14 @@ class OrdersView extends Component {
                 <td>{order.contact.salesHead}</td>
                 <td>{order.contact.distributor}</td>
                 <td>{order.category}</td>
-                <td>
+                <td className="text-right pr-3">
                   {order.items.reduce(
                     (acc, next) => acc + next.quantity * next.rate,
                     0
                   )}
+                </td>
+                <td>
+                  <Link to={`/orders/${order.id}`}>View</Link>
                 </td>
               </tr>
             ))}
