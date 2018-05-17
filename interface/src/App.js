@@ -6,6 +6,8 @@ import OrdersView from './components/OrdersView';
 import ProjectionForm from './components/ProjectionForm';
 import ProjectionsView from './components/ProjectionsView';
 import AnalysisView from './components/AnalysisView';
+import Landing from './components/Landing';
+
 
 const App = () => (
   <Router>
@@ -15,7 +17,7 @@ const App = () => (
         <Route
           exact
           path="/"
-          render={() => <h1 className="title">Hello World</h1>}
+          component={Landing}
         />
         <Route exact path="/sales/new" component={SalesForm} />
         <Route exact path="/orders" component={OrdersView} />
