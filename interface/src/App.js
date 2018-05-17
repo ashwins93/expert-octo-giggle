@@ -8,6 +8,7 @@ import ProjectionsView from './components/ProjectionsView';
 import AnalysisView from './components/AnalysisView';
 import Landing from './components/Landing';
 import ProjectionDetailView from './components/ProjectionDetailView';
+import OrderDetailView from './components/OrderDetailView';
 
 const App = () => (
   <Router>
@@ -21,6 +22,7 @@ const App = () => (
         <Route exact path="/projections" component={ProjectionsView} />
         <Route exact path="/analysis/:id" component={AnalysisView} />
         <Route exact path="/projections/:id" component={ProjectionDetailView} />
+        <Route exact path="/orders/:id" component={OrderDetailView} />
       </Switch>
     </div>
   </Router>

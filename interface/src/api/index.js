@@ -32,7 +32,7 @@ export const fetchAllOrders = () => {
 };
 
 export const fetchOrder = id => {
-  return Promise.resolve(db.orders.find(order => order.id === id));
+  return Promise.resolve(db.orders.find(order => order.id === Number(id)));
 };
 
 export const addOrder = formData => {
@@ -51,6 +51,6 @@ export const fetchAllProjections = () => {
 
 export const fetchProjection = id => {
   return Promise.resolve(
-    db.projections.find(projection => projection.id == id)
+    db.projections.find(projection => projection.id === Number(id))
   );
 };
