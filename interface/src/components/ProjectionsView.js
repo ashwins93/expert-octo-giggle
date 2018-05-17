@@ -23,16 +23,14 @@ class ProjectionsView extends Component {
     return (
       <Container className="py-5">
         <h1>Projections</h1>
-        <Table>
+        <Table className="text-center">
           <thead>
             <tr>
               <th>#</th>
               <th>Start Date</th>
               <th>End Date</th>
               <th>Sales Head</th>
-              <th>Category</th>
-              <th>Amount</th>
-              <th />
+              <th colspan="2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -42,8 +40,9 @@ class ProjectionsView extends Component {
                 <td>{projection.projectionStart}</td>
                 <td>{projection.projectionEnd}</td>
                 <td>{projection.salesHead}</td>
-                <td>{projection.category}</td>
-                <td className="text-right">{projection.amount}</td>
+                <td>
+                  <Link to={`/projections/${projection.id}`}>View</Link>
+                </td>
                 <td>
                   <Link to={`/analysis/${projection.id}`}>Analyze</Link>
                 </td>

@@ -108,16 +108,32 @@ const db = {
       projectionStart: '2018-05-01',
       projectionEnd: '2018-05-31',
       salesHead: 'SH001',
-      category: 'Cat1',
-      amount: '800'
+      categories: [
+        {
+          category: 'Cat1',
+          amount: '800'
+        },
+        {
+          category: 'Cat2',
+          amount: '300'
+        }
+      ]
     },
     {
       id: 1,
       projectionStart: '2018-04-01',
       projectionEnd: '2018-04-30',
       salesHead: 'SH002',
-      category: 'Cat2',
-      amount: '400'
+      categories: [
+        {
+          category: 'Cat2',
+          amount: '400'
+        },
+        {
+          category: 'Cat1',
+          amount: '252'
+        }
+      ]
     }
   ]
 };
