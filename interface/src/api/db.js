@@ -100,6 +100,41 @@ const db = {
         orderReceivedThrough: 'Message',
         originalOrder: '2018-05-06'
       }
+    },
+    {
+      id: 4,
+      category: 'Cat2',
+      contact: { salesHead: 'SH001', distributor: 'Dist1', endUser: 'User1' },
+      delivery: {
+        courier: 'ST',
+        deliveryDate: '2018-05-19',
+        dispatchDate: '2018-05-17',
+        invoiceNo: '123',
+        invoiced: false,
+        pendingPayments: '0',
+        podNo: '125',
+        remarks: 'Blah blah',
+        supply: '1st month'
+      },
+      items: [
+        {
+          id: 0,
+          name: 'Item4',
+          quantity: 5,
+          rate: '100'
+        },
+        {
+          id: 1,
+          name: 'Item5',
+          quantity: 3,
+          rate: '20'
+        }
+      ],
+      order: {
+        orderReceivedOn: '2018-05-12',
+        orderReceivedThrough: 'Message',
+        originalOrder: '2018-05-06'
+      }
     }
   ],
   projections: [

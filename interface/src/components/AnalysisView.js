@@ -10,8 +10,7 @@ class AnalysisView extends React.Component {
       projection: {
         projectionStart: '',
         projectionEnd: '',
-        category: '',
-        amount: '',
+        categories: [],
         salesHead: ''
       },
       orders: []
@@ -43,27 +42,44 @@ class AnalysisView extends React.Component {
       if (orderDate <= startDate || orderDate >= endDate) return false;
       return true;
     });
-
-    const totalAmounts = orders.reduce((acc, next) => {
-      return (
-        acc +
-        next.items.reduce((sum, item) => sum + item.rate * item.quantity, 0)
-      );
-    }, 0);
-    const invoicedAmounts = orders
-      .filter(order => order.delivery.invoiced)
-      .reduce((acc, next) => {
-        return next.items.reduce(
-          (sum, item) => sum + item.rate * item.quantity,
-          0
-        );
-      }, 0);
     const { projection } = this.state;
+    const ensemble = projection.categories.map(projection => {
+      const result = {
+        category: projection.category,
+        amount: projection.amount
+      };
+      const totalValue = orders
+        .filter(order => order.category === projection.category)
+        .reduce((acc, next) => {
+          return (
+            acc +
+            next.items.reduce((sum, item) => sum + item.rate * item.quantity, 0)
+          );
+        }, 0);
+      result.actual = orders
+        .filter(order => {
+          return (
+            order.delivery.invoiced && order.category === projection.category
+          );
+        })
+        .reduce((acc, next) => {
+          return (
+            acc +
+            next.items.reduce((sum, item) => sum + item.rate * item.quantity, 0)
+          );
+        }, 0);
+      result.pending = totalValue - result.actual;
+      result.shortFall = Math.max(result.amount - result.actual, 0);
+      return result;
+    });
     return (
       <Container>
         <h1>
           {projection.salesHead} <small>Analysis</small>
         </h1>
+        <p>
+          {projection.projectionStart} to {projection.projectionEnd}
+        </p>
         <Table>
           <thead>
             <tr>
@@ -75,13 +91,15 @@ class AnalysisView extends React.Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>{projection.category}</td>
-              <td>{projection.amount}</td>
-              <td>{invoicedAmounts}</td>
-              <td>{Math.max(projection.amount - invoicedAmounts, 0)}</td>
-              <td>{totalAmounts - invoicedAmounts}</td>
-            </tr>
+            {ensemble.map((result, index) => (
+              <tr key={index}>
+                <td>{result.category}</td>
+                <td>{result.amount}</td>
+                <td>{result.actual}</td>
+                <td>{result.shortFall}</td>
+                <td>{result.pending}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </Container>
