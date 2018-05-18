@@ -33,7 +33,7 @@ class SalesForm extends Component {
       clearForm
     } = this.props;
     return (
-      <Container className="py-5">
+      <Container className="py-5 fade">
         <h1>Enter new sale order</h1>
         <Form>
           <Row>

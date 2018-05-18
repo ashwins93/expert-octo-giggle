@@ -29,7 +29,7 @@ class ProjectionForm extends React.Component {
           category: '',
           amount: ''
         }
-      ],
+      ]
     };
   }
 
@@ -46,7 +46,8 @@ class ProjectionForm extends React.Component {
     );
   }
 
-  handleChange = name => ({ target }) => this.setState({ [name]: target.value });
+  handleChange = name => ({ target }) =>
+    this.setState({ [name]: target.value });
   handleChangeList = (name, id, field) => e => {
     let oldState = this.state[name];
     const newValue = e.target.value;
@@ -61,7 +62,11 @@ class ProjectionForm extends React.Component {
     });
   };
   addProjection = () => {
-    const newId = this.state.categories.reduce((maxId, item) => Math.max(maxId, item.id), -1) + 1;
+    const newId =
+      this.state.categories.reduce(
+        (maxId, item) => Math.max(maxId, item.id),
+        -1
+      ) + 1;
     this.setState({
       categories: [
         ...this.state.categories,
@@ -71,17 +76,19 @@ class ProjectionForm extends React.Component {
           amount: ''
         }
       ]
-    })
-  }
+    });
+  };
   removeProjection = id => {
     this.setState({
-      categories: this.state.categories.filter(projection => projection.id !== id)
+      categories: this.state.categories.filter(
+        projection => projection.id !== id
+      )
     });
-  }
+  };
 
   render() {
     return (
-      <Container className="py-4">
+      <Container className="py-4 fade">
         <h1>New Projection</h1>
         <Form>
           <FormGroup row>
@@ -121,13 +128,17 @@ class ProjectionForm extends React.Component {
           </FormGroup>
           <hr />
           <h3>Projections</h3>
-          {this.state.categories.map((projection, index) =>
+          {this.state.categories.map((projection, index) => (
             <FormGroup key={index} row>
               <Label sm={2}>Invoice Category</Label>
               <Col sm={3}>
                 <CustomInput
                   value={projection.category}
-                  onChange={this.handleChangeList('categories', projection.id, 'category')}
+                  onChange={this.handleChangeList(
+                    'categories',
+                    projection.id,
+                    'category'
+                  )}
                   type="select"
                 >
                   <option value="">Select</option>
@@ -142,7 +153,11 @@ class ProjectionForm extends React.Component {
               <Col sm={3}>
                 <Input
                   value={projection.amount}
-                  onChange={this.handleChangeList('categories', projection.id, 'amount')}
+                  onChange={this.handleChangeList(
+                    'categories',
+                    projection.id,
+                    'amount'
+                  )}
                   type="text"
                   className="text-right"
                 />
@@ -158,8 +173,15 @@ class ProjectionForm extends React.Component {
                 </Button>
               </Col>
             </FormGroup>
-          )}
-          <Button type="button" onClick={this.addProjection} color="info" size="sm">Add New Line</Button>
+          ))}
+          <Button
+            type="button"
+            onClick={this.addProjection}
+            color="info"
+            size="sm"
+          >
+            Add New Line
+          </Button>
           <hr />
           <Button className="mr-2" size="lg" color="primary">
             Submit

@@ -43,7 +43,7 @@ class OrderDetailView extends React.Component {
   render() {
     const order = this.state;
     return (
-      <Container className="mt-3">
+      <Container className="mt-3 fade">
         <Row>
           <Col sm={6}>
             <Card>

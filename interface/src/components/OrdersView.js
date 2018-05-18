@@ -21,7 +21,7 @@ class OrdersView extends Component {
 
   render() {
     return (
-      <Container className="py-5">
+      <Container className="py-5 fade">
         <h1>Orders</h1>
         <Table>
           <thead>
@@ -32,7 +32,7 @@ class OrdersView extends Component {
               <th>Distributor</th>
               <th>Category</th>
               <th className="text-right">Order Total</th>
-              <th></th>
+              <th />
             </tr>
           </thead>
           <tbody>

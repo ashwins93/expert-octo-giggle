@@ -21,7 +21,7 @@ class ProjectionsView extends Component {
 
   render() {
     return (
-      <Container className="py-5">
+      <Container className="py-5 fade">
         <h1>Projections</h1>
         <Table className="text-center">
           <thead>

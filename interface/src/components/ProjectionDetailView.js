@@ -18,7 +18,7 @@ class ProjectionDetailView extends React.Component {
 
   render() {
     return (
-      <Container>
+      <Container className="fade">
         <h1>Projection for {this.state.salesHead}</h1>
         <p>
           {this.state.projectionStart} to {this.state.projectionEnd}

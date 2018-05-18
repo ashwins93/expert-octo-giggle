@@ -73,7 +73,7 @@ class AnalysisView extends React.Component {
       return result;
     });
     return (
-      <Container>
+      <Container className="fade">
         <h1>
           {projection.salesHead} <small>Analysis</small>
         </h1>
