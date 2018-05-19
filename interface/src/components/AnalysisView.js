@@ -1,6 +1,7 @@
 import React from 'react';
 import * as api from '../api';
-import { Table, Container } from 'reactstrap';
+import { Table, Container, Button } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 class AnalysisView extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class AnalysisView extends React.Component {
         categories: [],
         salesHead: ''
       },
-      orders: []
+      orders: [],
+      showPendingFor: ''
     };
   }
 
@@ -88,6 +90,7 @@ class AnalysisView extends React.Component {
               <th>Actual</th>
               <th>Shortfall</th>
               <th>Pending</th>
+              <th />
             </tr>
           </thead>
           <tbody>
@@ -98,10 +101,67 @@ class AnalysisView extends React.Component {
                 <td>{result.actual}</td>
                 <td>{result.shortFall}</td>
                 <td>{result.pending}</td>
+                <td style={{ width: '10%' }}>
+                  <Button
+                    color="info"
+                    size="sm"
+                    onClick={() =>
+                      this.setState({
+                        showPendingFor: result.category
+                      })
+                    }
+                  >
+                    View Pending
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </Table>
+        {this.state.showPendingFor !== '' ? (
+          <React.Fragment>
+            <h3 className="fade">Pending Orders</h3>
+            <Table className="fade">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Date</th>
+                  <th>Distributor</th>
+                  <th>Category</th>
+                  <th className="text-right">Order Total</th>
+                  <th />
+                </tr>
+              </thead>
+              <tbody>
+                {orders
+                  .filter(
+                    order =>
+                      !order.delivery.invoiced &&
+                      order.category === this.state.showPendingFor
+                  )
+                  .map((order, index) => (
+                    <tr key={order.id}>
+                      <td>{index + 1}</td>
+                      <td>{order.order.orderReceivedOn}</td>
+                      <td>{order.contact.distributor}</td>
+                      <td>{order.category}</td>
+                      <td className="text-right pr-3">
+                        {order.items.reduce(
+                          (acc, next) => acc + next.quantity * next.rate,
+                          0
+                        )}
+                      </td>
+                      <td>
+                        <Link to={`/orders/${order.id}`}>View</Link>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </Table>
+          </React.Fragment>
+        ) : (
+          ''
+        )}
       </Container>
     );
   }
