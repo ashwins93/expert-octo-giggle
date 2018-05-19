@@ -1,23 +1,41 @@
 const db = {
   categories: {
-    Cat1: ['Item1', 'Item2', 'Item3'],
-    Cat2: ['Item4', 'Item5', 'Item6']
+    EXDSI: ['Electode Analyser - EXDS'],
+    'EXCA - I': ['Electode Analyser - EXCA'],
+    'EXCA - RR': ['Diluent', 'LD Lyse', 'LH Lyse', 'Probe cleanser'],
+    'EXDS RR': [
+      'R1 - 470ML',
+      'R2 - 140ML',
+      'R1 - 235ML',
+      'Wash Solutions',
+      'Fibran Cups',
+      'Fibran Balls'
+    ],
+    EXT: ['R1 - 470ML', 'R2 - 140ML', 'R1 - 235ML']
   },
   distributors: {
-    Dis1: {
-      endUsers: ['User1', 'User2', 'User3'],
-      salesHead: 'SH001'
+    'Diagnostic Sales House': {
+      endUsers: ['Anand Lab', 'Distri.'],
+      salesHead: 'Udhaw & Baljeeth - Chandigarh'
     },
-    Dis2: {
-      endUsers: ['User4', 'User5'],
-      salesHead: 'SH002'
+    'Rose Medicare Pvt Ltd': {
+      endUsers: ['G.S. Neuro Health Clinic', 'Bimal', 'Maurya'],
+      salesHead: 'Pankaj/Randhir - Patna'
+    },
+    'Rapid House': {
+      salesHead: 'Pankaj/Randhir - Patna',
+      endUsers: ['Sriram Scan Center', 'Kamakya Diagnostics', 'Prasad Hospital']
     }
   },
   orders: [
     {
       id: 0,
-      category: 'Cat1',
-      contact: { salesHead: 'SH001', distributor: 'Dist1', endUser: 'User1' },
+      category: 'EXDSI',
+      contact: {
+        salesHead: 'Udhaw & Baljeeth - Chandigarh',
+        distributor: 'Diagnostic Sales House',
+        endUser: 'Anand Lab'
+      },
       delivery: {
         courier: 'ST',
         deliveryDate: '2018-05-19',
@@ -32,9 +50,9 @@ const db = {
       items: [
         {
           id: 0,
-          name: 'Item1',
+          name: 'Electode Analyser - EXDS',
           quantity: 2,
-          rate: '80'
+          rate: '200'
         }
       ],
       order: {
@@ -45,13 +63,17 @@ const db = {
     },
     {
       id: 1,
-      category: 'Cat2',
-      contact: { salesHead: 'SH002', distributor: 'Dist2', endUser: 'User4' },
+      category: 'EXCA - I',
+      contact: {
+        salesHead: 'Pankaj/Randhir - Patna',
+        distributor: 'Rose Medicare Pvt Ltd',
+        endUser: 'G.S. Neuro Health Clinic'
+      },
       delivery: {
-        courier: 'ST',
+        courier: 'ABCD',
         deliveryDate: '2018-05-19',
         dispatchDate: '2018-05-17',
-        invoiceNo: '123',
+        invoiceNo: '12133',
         invoiced: true,
         pendingPayments: '0',
         podNo: '125',
@@ -61,71 +83,130 @@ const db = {
       items: [
         {
           id: 0,
-          name: 'Item4',
-          quantity: 3,
+          name: 'Electode Analyser - EXCA',
+          quantity: 20,
           rate: '100'
         }
       ],
       order: {
         orderReceivedOn: '2018-04-15',
-        orderReceivedThrough: 'Message',
+        orderReceivedThrough: 'Phone Call',
+        originalOrder: '2018-05-06'
+      }
+    },
+    {
+      id: 2,
+      category: 'EXCA - I',
+      contact: {
+        salesHead: 'Pankaj/Randhir - Patna',
+        distributor: 'Rose Medicare Pvt Ltd',
+        endUser: 'G.S. Neuro Health Clinic'
+      },
+      delivery: {
+        courier: '',
+        deliveryDate: '',
+        dispatchDate: '',
+        invoiceNo: '',
+        invoiced: false,
+        pendingPayments: '',
+        podNo: '',
+        remarks: 'Blah blah',
+        supply: '1st month'
+      },
+      items: [
+        {
+          id: 0,
+          name: 'Electode Analyser - EXCA',
+          quantity: 23,
+          rate: '100'
+        }
+      ],
+      order: {
+        orderReceivedOn: '2018-04-15',
+        orderReceivedThrough: 'Phone Call',
         originalOrder: '2018-05-06'
       }
     },
     {
       id: 3,
-      category: 'Cat1',
-      contact: { salesHead: 'SH001', distributor: 'Dist1', endUser: 'User1' },
+      category: 'EXDS RR',
+      contact: {
+        salesHead: 'Udhaw & Baljeeth - Chandigarh',
+        distributor: 'Diagnostic Sales House',
+        endUser: 'Distri.'
+      },
       delivery: {
-        courier: 'ST',
-        deliveryDate: '2018-05-19',
-        dispatchDate: '2018-05-17',
-        invoiceNo: '123',
+        courier: '',
+        deliveryDate: '',
+        dispatchDate: '',
+        invoiceNo: '',
         invoiced: false,
         pendingPayments: '0',
-        podNo: '125',
+        podNo: '',
         remarks: 'Blah blah',
         supply: '1st month'
       },
       items: [
         {
           id: 0,
-          name: 'Item1',
-          quantity: 3,
-          rate: '100'
+          name: 'R1 - 470ML',
+          quantity: 5,
+          rate: '250'
+        },
+        {
+          id: 0,
+          name: 'R2 - 140ML',
+          quantity: 10,
+          rate: '50'
+        },
+        {
+          id: 0,
+          name: 'Wash Solutions',
+          quantity: 2,
+          rate: '60'
+        },
+        {
+          id: 0,
+          name: 'Fibran Cups',
+          quantity: 5,
+          rate: '30'
         }
       ],
       order: {
-        orderReceivedOn: '2018-05-04',
-        orderReceivedThrough: 'Message',
+        orderReceivedOn: '2018-05-23',
+        orderReceivedThrough: 'Email',
         originalOrder: '2018-05-06'
       }
     },
     {
       id: 4,
-      category: 'Cat2',
-      contact: { salesHead: 'SH001', distributor: 'Dist1', endUser: 'User1' },
+      category: 'EXT',
+      contact: {
+        salesHead: 'Udhaw & Baljeeth - Chandigarh',
+        distributor: 'Diagnostic Sales House',
+        endUser: 'Distri.'
+      },
       delivery: {
-        courier: 'ST',
-        deliveryDate: '2018-05-19',
-        dispatchDate: '2018-05-17',
-        invoiceNo: '123',
+        courier: '',
+        deliveryDate: '',
+        dispatchDate: '',
+        invoiceNo: '',
         invoiced: false,
         pendingPayments: '0',
-        podNo: '125',
+        podNo: '',
         remarks: 'Blah blah',
         supply: '1st month'
       },
       items: [
         {
           id: 0,
-          name: 'Item4',
+          name: 'R1 - 470ML',
           quantity: 5,
           rate: '100'
         },
         {
           id: 1,
-          name: 'Item5',
+          name: 'R1 - 235ML',
           quantity: 3,
           rate: '20'
         }
@@ -135,6 +216,45 @@ const db = {
         orderReceivedThrough: 'Message',
         originalOrder: '2018-05-06'
       }
+    },
+    {
+      id: 5,
+      category: 'EXDS RR',
+      contact: {
+        salesHead: 'Udhaw & Baljeeth - Chandigarh',
+        distributor: 'Diagnostic Sales House',
+        endUser: 'Distri.'
+      },
+      delivery: {
+        courier: 'ABC',
+        deliveryDate: '2018-06-01',
+        dispatchDate: '2018-05-31',
+        invoiceNo: '878AH',
+        invoiced: true,
+        pendingPayments: '0',
+        podNo: '1005932801',
+        remarks: 'Sent',
+        supply: '3rd Quarter'
+      },
+      items: [
+        {
+          id: 0,
+          name: 'R1 - 470ML',
+          quantity: 7,
+          rate: '250'
+        },
+        {
+          id: 1,
+          name: 'R2 - 140ML',
+          quantity: 15,
+          rate: '50'
+        }
+      ],
+      order: {
+        orderReceivedOn: '2018-05-23',
+        orderReceivedThrough: 'Email',
+        originalOrder: '2018-05-06'
+      }
     }
   ],
   projections: [
@@ -142,15 +262,19 @@ const db = {
       id: 0,
       projectionStart: '2018-05-01',
       projectionEnd: '2018-05-31',
-      salesHead: 'SH001',
+      salesHead: 'Udhaw & Baljeeth - Chandigarh',
       categories: [
         {
-          category: 'Cat1',
-          amount: '800'
+          category: 'EXDS RR',
+          amount: '3000'
         },
         {
-          category: 'Cat2',
-          amount: '300'
+          category: 'EXDSI',
+          amount: '5000'
+        },
+        {
+          category: 'EXT',
+          amount: '2000'
         }
       ]
     },
@@ -158,15 +282,15 @@ const db = {
       id: 1,
       projectionStart: '2018-04-01',
       projectionEnd: '2018-04-30',
-      salesHead: 'SH002',
+      salesHead: 'Pankaj/Randhir - Patna',
       categories: [
         {
-          category: 'Cat2',
-          amount: '400'
+          category: 'EXCA - I',
+          amount: '3000'
         },
         {
-          category: 'Cat1',
-          amount: '252'
+          category: 'EXT',
+          amount: '2500'
         }
       ]
     }
